@@ -58,7 +58,7 @@ RSpec.describe CoursesController do
       end
       it "render new template" do
         post :create, params: { course: { description: "bar" } }
-        expect(response).to render_template("new")
+        expect(response).to render_template(:new)
       end
     end
     
@@ -73,6 +73,20 @@ RSpec.describe CoursesController do
         post :create, params: { course: attributes_for(:course) }
         expect(response).to redirect_to courses_path
       end
+    end
+  end
+
+  describe "GET edit" do
+    it "assigns @course" do
+      course = create(:course)
+      get :edit, params: { id: course.id }
+      expect(assigns[:course]).to eq(course)
+    end
+
+    it "render template" do
+      course = create(:course)
+      get :edit, params: { id: course.id }
+      expect(response).to render_template(:edit)
     end
   end
 end
