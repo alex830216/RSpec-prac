@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe CoursesController, type: :controller do
+# 因為 spec/rails_helper.rb 有 config.infer_spec_type_from_file_location! 所以可省略type: :controller
+RSpec.describe CoursesController do
   describe "GET index" do
     # pending "add some examples (or delete) #{__FILE__}"
     it "assigns @courses and render" do
@@ -21,4 +22,20 @@ RSpec.describe CoursesController, type: :controller do
       expect(response).to render_template(:index)
     end
   end
+
+  describe "GET show" do
+    it "assigns @course" do
+      course = create(:course)
+      get :show, params: { id: course.id }
+      expect(assigns[:course]).to eq(course)
+    end
+
+    it "render template" do
+      course = create(:course)
+      get :show, params: { id: course.id }
+      expect(response).to render_template(:show)
+    end
+  end
+
+  
 end
