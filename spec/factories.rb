@@ -8,8 +8,8 @@ FactoryBot.define do
     #   title { "Chinese" }
     #   description { "hihi." }
     # end
-    title { "English" }
-    description { "abc." }
+    title { "Title." }
+    description { "Description." }
   end
   # factory :teacher do
   #   name { "Bob" }
